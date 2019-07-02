@@ -1,7 +1,14 @@
+import request from '../util/request';
+const delay=(millisecond)=>{
+    return new Promise(resolve => {
+        setTimeout(resolve,millisecond)
+    })
+};
 export default {
     namespace: 'puzzlecards',
     state: {
-        data:[
+        data:[],
+       /* data:[
             { id: 1,
                 setup: 'Did you hear about the two silk worms in a race?',
                 punchline: 'It ended in a tie',
@@ -11,8 +18,19 @@ export default {
                 setup: 'What happens to a frog\'s car when it breaks down?',
                 punchline: 'It gets toad away',
             },
-        ],
-        counter:100,
+        ],*/
+        counter:0,
+    },
+    effects:{
+        *queryInitCards(_,sagaEffects){
+            const {call,put}=sagaEffects;
+            const endPointURL='/dev/recommendPoetry';
+            const puzzle=yield call(request,endPointURL)
+            yield put({type:'addNewCard',payload:puzzle})
+            yield call(delay,3000);
+            const puzzle2=yield call(request,endPointURL)
+            yield put({type:'addNewCard',payload:puzzle2})
+        }
     },
     reducers:{
         addNewCard(state,{payload:newCard}){

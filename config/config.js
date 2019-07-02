@@ -29,5 +29,12 @@ export default {
             }
         ]
 
-    }]
+    }],
+    proxy:{
+        '/dev':{
+            target:'https://api.apiopen.top',
+            changeOrigin:true,
+            pathRewrite:{"^/dev":""}
+        }
+    }
 };
