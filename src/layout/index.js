@@ -30,6 +30,12 @@ export default class BasicLayout extends Component{
                                 <span>PuzzleCards</span>
                             </Link>
                         </Menu.Item>
+                        <Menu.Item key="7">
+                            <Link to="/list">
+                                <Icon type="tag" />
+                                <span>List</span>
+                            </Link>
+                        </Menu.Item>
                     </Menu>
                 </Sider>
                 <Layout>
